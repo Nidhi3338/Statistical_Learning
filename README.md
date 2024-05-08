@@ -44,4 +44,34 @@ This dataset, which has 18 features and 12,330 observations, is believed to be t
 ### METHOD OF IMPLEMENTATION:
  
 The online shoppers purchasing intention project is going to be started with the data preprocessing to address missing / inappropriate data by either deleting them or filling them with averages or medians and then normalizing the numerical values for consistency. Exploratory Data Analytics is going to be conducted on preprocessed data to examine the data and identify any outliers if exists which helps in understanding the datasets attributes better. After this, we choose key features based on insights from EDA using methods like correlation analysis to identify and eliminate redundant features.  The objective of the project is then implemented using Machine Learning Classification techniques such as logistic regression, Decision Trees, Naïve Bayes, SVM etc. to classify online customer conversion.
- 
+ """ import warnings
+warnings.filterwarnings('ignore')
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import math
+
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import RobustScaler
+
+from imblearn.over_sampling import SMOTE
+
+from dataclasses import dataclass
+
+from scipy import optimize
+from scipy.optimize import Bounds
+
+from tqdm import tqdm
+
+import sys
+
+from scipy.stats import chi2_contingency
+
+import random
+
+from sklearn.metrics import roc_curve, roc_auc_score, auc 
+"""
