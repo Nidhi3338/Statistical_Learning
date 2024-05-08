@@ -44,8 +44,7 @@ This dataset, which has 18 features and 12,330 observations, is believed to be t
 ### METHOD OF IMPLEMENTATION:
  
 The online shoppers purchasing intention project is going to be started with the data preprocessing to address missing / inappropriate data by either deleting them or filling them with averages or medians and then normalizing the numerical values for consistency. Exploratory Data Analytics is going to be conducted on preprocessed data to examine the data and identify any outliers if exists which helps in understanding the datasets attributes better. After this, we choose key features based on insights from EDA using methods like correlation analysis to identify and eliminate redundant features.  The objective of the project is then implemented using Machine Learning Classification techniques such as logistic regression, Decision Trees, Naïve Bayes, SVM etc. to classify online customer conversion.
- ``` import warnings
-warnings.filterwarnings('ignore')
+ ``` 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -75,3 +74,82 @@ import random
 
 from sklearn.metrics import roc_curve, roc_auc_score, auc 
 ```
+```
+#EDA
+df.info()
+df.describe()
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 12330 entries, 0 to 12329
+Data columns (total 18 columns):
+ #   Column                   Non-Null Count  Dtype  
+---  ------                   --------------  -----  
+ 0   Administrative           12330 non-null  int64  
+ 1   Administrative_Duration  12330 non-null  float64
+ 2   Informational            12330 non-null  int64  
+ 3   Informational_Duration   12330 non-null  float64
+ 4   ProductRelated           12330 non-null  int64  
+ 5   ProductRelated_Duration  12330 non-null  float64
+ 6   BounceRates              12330 non-null  float64
+ 7   ExitRates                12330 non-null  float64
+ 8   PageValues               12330 non-null  float64
+ 9   SpecialDay               12330 non-null  float64
+ 10  Month                    12330 non-null  object 
+ 11  OperatingSystems         12330 non-null  int64  
+ 12  Browser                  12330 non-null  int64  
+ 13  Region                   12330 non-null  int64  
+ 14  TrafficType              12330 non-null  int64  
+ 15  VisitorType              12330 non-null  object 
+ 16  Weekend                  12330 non-null  bool   
+ 17  Revenue                  12330 non-null  bool   
+dtypes: bool(2), float64(7), int64(7), object(2)
+memory usage: 1.5+ MB
+```
+# Check for null values in the data dictionary
+print(df.isnull().sum())
+Administrative             0
+Administrative_Duration    0
+Informational              0
+Informational_Duration     0
+ProductRelated             0
+ProductRelated_Duration    0
+BounceRates                0
+ExitRates                  0
+PageValues                 0
+SpecialDay                 0
+Month                      0
+OperatingSystems           0
+Browser                    0
+Region                     0
+TrafficType                0
+VisitorType                0
+Weekend                    0
+Revenue                    0
+dtype: int64
+```
+###Exploring Features
+#Since data has numerical and categorical columns, exploring them separately
+numerical_cols = df.select_dtypes(exclude=['object', 'bool']).columns.tolist()
+```
+# Creating a histogram for each numerical column
+for col in numerical_cols:
+    plt.figure(figsize=(4, 3))  # Set the figure size for better visibility
+    df[col].hist(bins=30)  # You can adjust the number of bins based on your data distribution
+    plt.title(f'Histogram of {col}')  # Set title with column name
+    plt.xlabel(col)  # Set x-axis label to column name
+    plt.ylabel('Frequency')  # Set y-axis label to Frequency
+    plt.grid(False)  
+    plt.show()
+```
+#Since data has numerical and categorical columns, exploring them separately
+numerical_cols = df.select_dtypes(exclude=['object', 'bool']).columns.tolist()
+
+# Creating a histogram for each numerical column
+for col in numerical_cols:
+    plt.figure(figsize=(4, 3))  # Set the figure size for better visibility
+    df[col].hist(bins=30)  # You can adjust the number of bins based on your data distribution
+    plt.title(f'Histogram of {col}')  # Set title with column name
+    plt.xlabel(col)  # Set x-axis label to column name
+    plt.ylabel('Frequency')  # Set y-axis label to Frequency
+    plt.grid(False)  
+    plt.show()
