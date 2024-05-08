@@ -141,15 +141,4 @@ for col in numerical_cols:
     plt.grid(False)  
     plt.show()
 ```
-#Since data has numerical and categorical columns, exploring them separately
-numerical_cols = df.select_dtypes(exclude=['object', 'bool']).columns.tolist()
 
-# Creating a histogram for each numerical column
-for col in numerical_cols:
-    plt.figure(figsize=(4, 3))  # Set the figure size for better visibility
-    df[col].hist(bins=30)  # You can adjust the number of bins based on your data distribution
-    plt.title(f'Histogram of {col}')  # Set title with column name
-    plt.xlabel(col)  # Set x-axis label to column name
-    plt.ylabel('Frequency')  # Set y-axis label to Frequency
-    plt.grid(False)  
-    plt.show()
